@@ -1,0 +1,13 @@
+class <%= "Create#{plural_name.camelize}I18n" %> < ActiveRecord::Migration
+  def change 
+    create_table <%= ":#{table_name}_i18n" %> do |t|    
+      t.integer <%= ":#{singular_table_name}_id" %>, :null => false
+      t.string :locale, :null => false        
+      
+      t.timestamps 
+    end
+    add_index <%= ":#{table_name}_i18n" %>, <%= ":#{singular_table_name}_id" %>
+    add_index <%= ":#{table_name}_i18n" %>, :locale
+    
+  end  
+end
