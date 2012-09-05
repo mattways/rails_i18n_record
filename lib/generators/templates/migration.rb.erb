@@ -9,5 +9,7 @@ class <%= "Create#{plural_name.camelize}I18n" %> < ActiveRecord::Migration
     add_index <%= ":#{table_name}_i18n" %>, <%= ":#{singular_table_name}_id" %>
     add_index <%= ":#{table_name}_i18n" %>, :locale
     
+    add_index <%= ":#{table_name}_i18n" %>, :created_at
+    add_index <%= ":#{table_name}_i18n" %>, :updated_at    
   end  
 end

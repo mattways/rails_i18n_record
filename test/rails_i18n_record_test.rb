@@ -7,7 +7,7 @@ class RailsI18nRecordTest < ActiveSupport::TestCase
   end
   
   test 'route' do
-    assert_equal TranslatableRecord.create(:name => 'prueba').name.to_s, 'prueba'
+    assert_equal TranslatableRecord.create(:name => 'test').name.to_s, 'test'
   end  
   
 end
