@@ -1,3 +1,45 @@
-= RailsI18nRecord
+= Rails I18n Record
 
-This project rocks and uses MIT-LICENSE.
+Adds models, migrations and handy methods to ActiveRecord to deal with translations.
+
+= Install
+
+Put this line in your Gemfile:
+  gem 'rails-i18n-record', :git => 'git@github.com:mattways/rails-i18n-record.git'
+  
+Then bundle:
+  $ bundle
+  
+= Usage
+
+First define the model and set the name of the fields you want to translate with the attr_translatable method:
+  attr_translatable :prop
+
+Generate the translation model and migration for that model:
+  rails g i18n Model
+  
+Update the migration with the column for that field:
+  t.string :prop
+  
+Update your db:
+  rake db:migrate
+  
+(Now you can use that field of the model as usual and any change would be saved using the curren I18n.locale) 
+
+If you want to get another translation:
+  model_instance.translation_by_locale :es
+  
+If you want to save multiple translations:
+  <% f.object.translations.each do |t| %>
+    <%= f.fields_for 'translations_attributes[]', t do |ff| %>
+      <%= field_set_tag t("languages.#{t.locale}") do %>
+        <ul>
+          <li>
+            <%= ff.label :prop %>
+            <%= ff.text_field :prop %>
+          </li>              
+        </ul>
+      <% end %>
+    <% end %>      
+  <% end %>  
+  
