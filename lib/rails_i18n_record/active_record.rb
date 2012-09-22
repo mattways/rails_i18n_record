@@ -18,8 +18,7 @@ module RailsI18nRecord
           accepts_nested_attributes_for :translations
           default_scope :include => :translations            
           after_create :late_translations
-          after_save :late_translations     
-          after_initialize :default_translations,                        
+          after_save :late_translations                      
           @translatable_atrrs = []               
           @translatable = true      
         end
@@ -51,14 +50,14 @@ module RailsI18nRecord
         translations.find{|t| t[:locale] == locale.to_s}
       end
       
-      protected
-
-      def default_translations
+      def build_translations
         I18n.available_locales.each do |locale| 
           t = translation_by_locale(locale)
           translations.build :locale => locale.to_s unless t
         end
-      end
+      end      
+      
+      protected
 
       def late_translations
         if @translate_late.is_a?(Hash)
