@@ -25,11 +25,11 @@ module RailsI18nRecord
         args.each do |arg|
           @translatable_atrrs << arg
           define_method "#{arg}=" do |value|          
-            t = translation_by_locale(I18n.locale)
-            t ? t.send("#{arg}=".to_sym, value) : translate_late(I18n.locale, arg.to_sym => value)        
+            t = translation_by_locale(current_locale)
+            t ? t.send("#{arg}=".to_sym, value) : translate_late(current_locale, arg.to_sym => value)        
           end        
           define_method "#{arg}" do
-            t = translation_by_locale(I18n.locale)
+            t = translation_by_locale(current_locale)
             t ? t.send(arg.to_sym) : ''      
           end                 
         end         
@@ -46,6 +46,10 @@ module RailsI18nRecord
     end    
     module TranslatableMethods
       
+      def with_locale(locale)
+        @locale = locale
+      end
+      
       def translation_by_locale(locale)
         translations.find{|t| t[:locale] == locale.to_s}
       end
@@ -58,6 +62,10 @@ module RailsI18nRecord
       end      
       
       protected
+      
+      def current_locale
+        defined? @locale ? @locale : I18n.locale
+      end
 
       def late_translations
         if @translate_late.is_a?(Hash)
