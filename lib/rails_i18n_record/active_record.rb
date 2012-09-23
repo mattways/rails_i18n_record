@@ -64,7 +64,7 @@ module RailsI18nRecord
       protected
       
       def current_locale
-        defined? @locale ? @locale : I18n.locale
+        defined?(@locale) ? @locale : I18n.locale
       end
 
       def late_translations
