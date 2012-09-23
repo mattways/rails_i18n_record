@@ -28,6 +28,9 @@ Update your db:
 
 If you want to get another translation:
   model_instance.translation_by_locale :es
+
+If you want to change the locale to something different than I18n.locale:
+  model_instance.with_locale :es
   
 If you want to save multiple translations:
   <% f.object.translations.each do |t| %>
