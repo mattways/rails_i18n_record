@@ -13,9 +13,9 @@ module RailsI18nRecord
       def attr_translatable(*args)
         unless translatable?    
           send :include, RailsI18nRecord::ActiveRecord::TranslatableMethods
-          attr_accessible :translations_attributes
+          default_scope :include => :translation
+          has_one :translation, :class_name => translation_class, :autosave => true, :dependent => :destroy, :conditions => {:locale => I18n.locale}
           has_many :translations, :class_name => translation_class, :autosave => true, :dependent => :destroy                 
-          accepts_nested_attributes_for :translations         
           after_create :late_translations
           after_save :late_translations                      
           @translatable_atrrs = []               
@@ -23,12 +23,12 @@ module RailsI18nRecord
         end
         args.each do |arg|
           @translatable_atrrs << arg
-          define_method "#{arg}=" do |value|          
-            t = translations.find_by_locale(current_locale)
+          define_method "#{arg}=" do |value|     
+            t = current_locale == I18n.locale ? translation : translations.find_by_locale(current_locale)
             t ? t.send("#{arg}=".to_sym, value) : translate_late(current_locale, arg.to_sym => value)        
           end        
           define_method "#{arg}" do
-            t = translations.find_by_locale(current_locale)
+            t = current_locale == I18n.locale ? translation : translations.find_by_locale(current_locale)
             t ? t.send(arg.to_sym) : ''      
           end                 
         end         
@@ -49,6 +49,10 @@ module RailsI18nRecord
         @locale = locale
       end
       
+      def build_translation
+        super :locale => I18n.locale
+      end
+      
       def build_translations
         I18n.available_locales.each do |locale| 
           t = translations.find_by_locale(locale)
@@ -65,7 +69,7 @@ module RailsI18nRecord
       def late_translations
         if @translate_late.is_a?(Hash)
           @translate_late.each do |locale, params|
-            t = translations.find_by_locale(locale)
+            t = current_locale == I18n.locale ? translation : translations.find_by_locale(current_locale)
             t ? t.update_attributes(params) : translations.create(params.merge(:locale => locale.to_s))
           end
           @translate_late.clear
