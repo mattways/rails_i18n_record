@@ -14,7 +14,7 @@ module RailsI18nRecord
         unless translatable?    
           send :include, RailsI18nRecord::ActiveRecord::TranslatableMethods
           default_scope :include => :translation
-          has_many :translation, :class_name => translation_class, :autosave => true, :dependent => :destroy, :conditions => proc { {:locale => I18n.locale} }
+          has_one :translation, :class_name => translation_class, :autosave => true, :dependent => :destroy, :conditions => proc { {:locale => I18n.locale} }
           has_many :translations, :class_name => translation_class, :autosave => true, :dependent => :destroy                 
           after_create :late_translations
           after_save :late_translations                      
