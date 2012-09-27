@@ -3,54 +3,40 @@ module RailsI18nRecord
     module NonTranslatableMethods
       
       def translatable?
-        @translatable == true
-      end
-      
-      def translatable_attrs
-        @translatable_atrrs ||= []
+        (defined?(@translatable_atrrs) and @translatable_atrrs.any?)
       end
     
       def attr_translatable(*args)
-        unless translatable?    
+        unless translatable?     
           send :include, RailsI18nRecord::ActiveRecord::TranslatableMethods
-          default_scope :include => :translation
-          has_one :translation, :class_name => translation_class, :autosave => true, :dependent => :destroy, :conditions => proc { {:locale => I18n.locale} }
-          has_many :translations, :class_name => translation_class, :autosave => true, :dependent => :destroy                 
-          after_create :late_translations
-          after_save :late_translations                      
-          @translatable_atrrs = []               
-          @translatable = true      
+          default_scope :include => :translations
+          attr_accessible :translations_attributes
+          has_many :translations, :class_name => "#{name}Translation", :autosave => true, :dependent => :destroy    
+          accepts_nested_attributes_for :translations                                        
+          @translatable_atrrs = []                  
         end
         args.each do |arg|
           @translatable_atrrs << arg
           define_method "#{arg}=" do |value|     
             t = translation_by_locale(current_locale)
-            t ? t.send("#{arg}=".to_sym, value) : translate_late(current_locale, arg.to_sym => value)        
+            t ? t.send("#{arg}=".to_sym, value) : translations.build(:locale => current_locale, arg.to_sym => value)        
           end        
           define_method "#{arg}" do
             t = translation_by_locale(current_locale)
-            t ? t.send(arg.to_sym) : ''      
-          end                 
+            t ? t.send("#{arg}".to_sym) : nil             
+          end           
+          define_method "#{arg}_was" do          
+            t = translation_by_locale(current_locale)
+            t ? t.send("#{arg}_was".to_sym) : nil     
+          end                
         end         
-      end  
-      
-      def translation_class
-        "#{name}Translation"
-      end
-    
-      def translation_fk
-        "#{table_name.singularize}_id"
-      end      
+      end       
       
     end    
     module TranslatableMethods
       
       def with_locale(locale)
         @locale = locale
-      end
-      
-      def build_translation
-        super :locale => I18n.locale
       end
       
       def build_translations
@@ -67,29 +53,8 @@ module RailsI18nRecord
       end
       
       def translation_by_locale(locale)
-        locale == I18n.locale ? translation : translations.find_by_locale(locale)
-      end
-
-      def late_translations
-        if @translate_late.is_a?(Hash)
-          @translate_late.each do |locale, params|
-            t = translation_by_locale(current_locale)
-            t ? t.update_attributes(params) : translations.create(params.merge(:locale => locale.to_s))
-          end
-          @translate_late.clear
-        end
-      end    
-
-      def translate_late(locale, fields)
-        if @translate_late.is_a?(Hash)
-          if @translate_late[locale].is_a?(Hash)
-            @translate_late[locale].merge! fields
-          else
-            @translate_late[locale] = fields
-          end        
-        else
-          @translate_late = {locale => fields}        
-        end
+        t = translations.find { |t| t.locale == locale.to_s }
+        t ? t : translations.find_by_locale(locale)
       end
       
     end
