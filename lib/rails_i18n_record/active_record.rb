@@ -35,6 +35,16 @@ module RailsI18nRecord
     end    
     module TranslatableMethods
       
+      def self.included(base)
+        base.instance_eval do
+          
+          def translation_table
+            Object.const_get("#{name}Translation").table_name.to_sym
+          end          
+          
+        end
+      end
+      
       def with_locale(locale)
         @locale = locale
       end
@@ -44,7 +54,7 @@ module RailsI18nRecord
           t = translations.find_by_locale(locale)
           translations.build :locale => locale.to_s unless t
         end
-      end      
+      end   
       
       protected
       
