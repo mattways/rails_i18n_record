@@ -3,7 +3,7 @@ module RailsI18nRecord
     module NonTranslatableMethods
       
       def translatable?
-        (defined?(@translatable_atrrs) and @translatable_atrrs.any?)
+        not defined?(@translatable_atrrs).nil?
       end
     
       def attr_translatable(*args)
@@ -17,13 +17,13 @@ module RailsI18nRecord
         end
         args.each do |arg|
           @translatable_atrrs << arg
-          define_method "#{arg}=" do |value|     
+          define_method "#{arg}=" do |value|  
             t = translation_by_locale(current_locale)
-            t ? t.send("#{arg}=".to_sym, value) : translations.build(:locale => current_locale, arg.to_sym => value)        
+            t ? t.send("#{arg}=".to_sym, value) : translations.build(:locale => current_locale.to_s, arg.to_sym => value)        
           end        
           define_method "#{arg}" do
             t = translation_by_locale(current_locale)
-            t ? t.send("#{arg}".to_sym) : nil             
+            t ? t.send("#{arg}".to_sym) : nil
           end           
           define_method "#{arg}_was" do          
             t = translation_by_locale(current_locale)
@@ -49,7 +49,7 @@ module RailsI18nRecord
       protected
       
       def current_locale
-        defined?(@locale) ? @locale : I18n.locale
+        defined?(@locale).nil? ? I18n.locale.to_s : @locale
       end
       
       def translation_by_locale(locale)
