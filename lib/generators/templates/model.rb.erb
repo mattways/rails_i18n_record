@@ -2,7 +2,7 @@ class <%= "#{class_name}Translation" %> < ActiveRecord::Base
   
   self.table_name = <%= ":#{table_name}_i18n" %>
   
-  attr_accessible :locale, <%= ":#{singular_table_name}_id" %>, <%= @model ? @model.translatable_attrs.map{|a|":#{a}"}.join(', ') : '' %>
+  attr_accessible :locale, <%= ":#{singular_table_name}_id" %>, <%= @model ? @model.instance_variable_get('@translatable_attrs').map{|a|":#{a}"}.join(', ') : '' %>
   
   belongs_to <%= ":#{table_name}" %>
   

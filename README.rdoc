@@ -5,7 +5,7 @@ Adds models, migrations and handy methods to ActiveRecord to deal with translati
 = Install
 
 Put this line in your Gemfile:
-  gem 'rails-i18n-record', :git => 'git@github.com:mattways/rails-i18n-record.git'
+  gem 'rails-i18n-record'
   
 Then bundle:
   $ bundle
