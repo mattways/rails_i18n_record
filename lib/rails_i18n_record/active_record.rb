@@ -7,30 +7,35 @@ module RailsI18nRecord
       end
     
       def attr_translatable(*args)
-        unless translatable?     
-          send :include, RailsI18nRecord::ActiveRecord::TranslatableMethods
-          default_scope :include => :translations
-          attr_accessible :translations_attributes
-          has_many :translations, :class_name => "#{name}Translation", :autosave => true, :dependent => :destroy    
-          accepts_nested_attributes_for :translations                                        
-          @translatable_atrrs = []                  
-        end
-        args.each do |arg|
-          @translatable_atrrs << arg
-          define_method "#{arg}=" do |value|  
-            t = translation_by_locale(current_locale)
-            t ? t.send("#{arg}=".to_sym, value) : translations.build(:locale => current_locale.to_s, arg.to_sym => value)        
-          end        
-          define_method "#{arg}" do
-            t = translation_by_locale(current_locale)
-            t ? t.send("#{arg}".to_sym) : nil
-          end           
-          define_method "#{arg}_was" do          
-            t = translation_by_locale(current_locale)
-            t ? t.send("#{arg}_was".to_sym) : nil     
-          end                
-        end         
-      end       
+        make_translatable unless translatable?
+        args.each { |arg| define_translatable_attr(arg) }
+      end 
+
+      protected
+
+      def make_translatable
+        send :include, RailsI18nRecord::ActiveRecord::TranslatableMethods
+        default_scope :include => :translations
+        attr_accessible :translations_attributes
+        has_many :translations, :class_name => "#{name}Translation", :autosave => true, :dependent => :destroy    
+        accepts_nested_attributes_for :translations                                        
+        @translatable_atrrs = []                  
+      end
+
+      def define_translatable_attr(arg)
+        define_method "#{arg}=" do |value|  
+          t = translation_by_locale(current_locale)
+          t ? t.send("#{arg}=".to_sym, value) : translations.build(:locale => current_locale.to_s, arg.to_sym => value)        
+        end        
+        define_method "#{arg}" do
+          t = translation_by_locale(current_locale)
+          t ? t.send("#{arg}".to_sym) : nil
+        end           
+        define_method "#{arg}_was" do          
+          t = translation_by_locale(current_locale)
+          t ? t.send("#{arg}_was".to_sym) : nil     
+        end                
+      end
       
     end    
     module TranslatableMethods
