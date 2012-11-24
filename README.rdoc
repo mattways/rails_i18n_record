@@ -1,3 +1,5 @@
+{<img src="https://codeclimate.com/badge.png" />}[https://codeclimate.com/github/mattways/rails-i18n-record]
+
 = Rails I18n Record
 
 Adds models, migrations and handy methods to ActiveRecord to deal with translations.
@@ -38,6 +40,6 @@ If you want to save multiple translations:
       = field_set_tag t("languages.#{t.locale}") do
         %ul
           %li
-            = ff.label :prop %>
-            = ff.text_field :prop %>
+            = ff.label :prop
+            = ff.text_field :prop
   
