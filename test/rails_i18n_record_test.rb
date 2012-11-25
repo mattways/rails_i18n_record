@@ -9,7 +9,7 @@ class RailsI18nRecordTest < ActiveSupport::TestCase
   end
   
   test 'should create associated translation' do
-    assert_equal @record.name.to_s, 'name'
+    assert_equal @record.name, 'name'
   end
 
   test 'should edit associated translation' do

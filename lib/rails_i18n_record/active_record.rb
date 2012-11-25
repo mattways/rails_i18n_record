@@ -22,33 +22,28 @@ module RailsI18nRecord
         @translatable_atrrs = []                  
       end
 
-      def define_translatable_attribute_methods(name)
-        ['set', 'get', 'was'].each do |method|
-          send "define_translatable_attribute_method_#{method}", name
+      def define_translatable_attribute_methods(attr)
+        ['set', 'get'].each do |method|
+          send "define_translatable_attribute_method_#{method}", attr
         end
       end
 
-      def define_translatable_attribute_method_set(name)
-        define_method "#{name}=" do |value|  
+      def define_translatable_attribute_method_set(attr)
+        define_method "#{attr}=" do |value|  
           t = translation_by_locale(current_locale)
-          t ? t.send("#{name}=".to_sym, value) : translations.build(:locale => current_locale.to_s, name.to_sym => value)        
+          t ? t.send("#{attr}=".to_sym, value) : translations.build(:locale => current_locale.to_s, attr.to_sym => value)        
         end        
       end
 
-      def define_translatable_attribute_method_get(name)
-        define_method "#{name}" do
-          t = translation_by_locale(current_locale)
-          t ? t.send("#{name}".to_sym) : nil
-        end           
+      def define_translatable_attribute_method_get(attr)
+        ['', '_was', '_changed?'].each do |suffix|
+          define_method "#{attr}#{suffix}" do
+            t = translation_by_locale(current_locale)
+            t ? t.send("#{attr}#{suffix}".to_sym) : nil
+          end           
+        end
       end
 
-      def define_translatable_attribute_method_was(name)
-        define_method "#{name}_was" do          
-          t = translation_by_locale(current_locale)
-          t ? t.send("#{name}_was".to_sym) : nil     
-        end                
-      end
-      
     end    
     module TranslatableMethods
       
