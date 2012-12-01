@@ -1,4 +1,4 @@
-{<img src="https://codeclimate.com/badge.png" />}[https://codeclimate.com/github/mattways/rails-i18n-record] {<img src="https://secure.travis-ci.org/mattways/rails-i18n-record.png?branch=master" alt="Build Status" />}[https://travis-ci.org/mattways/rails-i18n-record]
+{<img src="https://codeclimate.com/badge.png" />}[https://codeclimate.com/github/mattways/rails-i18n-record] {<img src="https://secure.travis-ci.org/mattways/rails-i18n-record.png?branch=master" alt="Build Status" />}[https://travis-ci.org/mattways/rails-i18n-record] {<img src="https://gemnasium.com/mattways/rails-i18n-record.png" alt="Dependency Status" />}[https://gemnasium.com/mattways/rails-i18n-record]
 
 = Rails I18n Record
 
