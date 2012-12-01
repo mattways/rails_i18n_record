@@ -19,13 +19,13 @@ class RailsI18nRecordTest < ActiveSupport::TestCase
 
   test 'should delete associated translation' do
     @record.destroy
-    assert_equal RecordTranslation.find_by_record_id(@record.id), nil
+    assert_equal ModelTranslation.find_by_model_id(@record.id), nil
   end
 
   protected
 
   def create_record
-    @record = Record.create(:name => 'name') 
+    @record = Model.create(:name => 'name') 
   end
 
 end

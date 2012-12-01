@@ -13,20 +13,20 @@
 
 ActiveRecord::Schema.define(:version => 20120831210818) do
 
-  create_table "records", :force => true do |t|
+  create_table "models", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-  create_table "records_i18n", :force => true do |t|
-    t.integer  "record_id",  :null => false
+  create_table "models_i18n", :force => true do |t|
+    t.integer  "model_id",   :null => false
     t.string   "locale",     :null => false
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-  add_index "records_i18n", ["locale"], :name => "index_records_i18n_on_locale"
-  add_index "records_i18n", ["record_id"], :name => "index_records_i18n_on_record_id"
+  add_index "models_i18n", ["locale"], :name => "index_models_i18n_on_locale"
+  add_index "models_i18n", ["model_id"], :name => "index_models_i18n_on_model_id"
 
 end
