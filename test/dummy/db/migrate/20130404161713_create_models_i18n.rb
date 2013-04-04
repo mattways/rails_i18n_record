@@ -1,5 +1,5 @@
 class CreateModelsI18n < ActiveRecord::Migration
-  def change 
+  def up
     create_table :models_i18n do |t|    
       t.integer :model_id, :null => false
       t.string :locale, :null => false        
@@ -8,5 +8,12 @@ class CreateModelsI18n < ActiveRecord::Migration
     end
     add_index :models_i18n, :model_id
     add_index :models_i18n, :locale
-  end  
+    add_index :models_i18n, :name
+    add_index :models_i18n, :created_at
+    add_index :models_i18n, :updated_at    
+  end
+
+  def down
+    drop_table :models_i18n
+  end
 end

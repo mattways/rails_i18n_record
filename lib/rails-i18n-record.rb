@@ -1,4 +1,4 @@
-require 'rails_i18n_record/active_record'
+require 'rails/i18n'
 
-module RailsI18nRecord
+module Rails
 end

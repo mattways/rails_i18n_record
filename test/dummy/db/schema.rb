@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120831210818) do
+ActiveRecord::Schema.define(:version => 20130404161713) do
 
   create_table "models", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -26,7 +26,10 @@ ActiveRecord::Schema.define(:version => 20120831210818) do
     t.datetime "updated_at", :null => false
   end
 
+  add_index "models_i18n", ["created_at"], :name => "index_models_i18n_on_created_at"
   add_index "models_i18n", ["locale"], :name => "index_models_i18n_on_locale"
   add_index "models_i18n", ["model_id"], :name => "index_models_i18n_on_model_id"
+  add_index "models_i18n", ["name"], :name => "index_models_i18n_on_name"
+  add_index "models_i18n", ["updated_at"], :name => "index_models_i18n_on_updated_at"
 
 end
