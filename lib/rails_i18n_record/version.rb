@@ -1,0 +1,5 @@
+module RailsI18nRecord
+  
+  VERSION = '1.0.4'
+
+end

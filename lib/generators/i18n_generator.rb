@@ -2,7 +2,8 @@ require 'rails/generators'
 
 class I18nGenerator < Rails::Generators::NamedBase
   
-  include Rails::Generators::Migration  
+  include Rails::Generators::Migration
+
   source_root File.expand_path('../templates', __FILE__)
   
   def create_model
