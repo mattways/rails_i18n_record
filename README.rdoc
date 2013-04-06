@@ -42,4 +42,3 @@ If you want to save multiple translations:
           %li
             = ff.label :prop
             = ff.text_field :prop
-  
