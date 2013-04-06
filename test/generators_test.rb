@@ -9,7 +9,7 @@ class I18nGeneratorTest < Rails::Generators::TestCase
   tests I18nGenerator
   destination File.expand_path('../tmp', File.dirname(__FILE__))
   
-  test 'should exists' do
+  test "should exists" do
     run_generator %w(something)
     assert_file 'app/models/something_translation.rb'
     assert_migration 'db/migrate/create_somethings_i18n.rb'    
