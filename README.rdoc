@@ -15,13 +15,13 @@ Then bundle:
 = Usage
 
 First define the model and set the name of the fields you want to translate with the attr_translatable method:
-  attr_translatable :prop
+  attr_translatable :attr
 
 Generate the translation model and migration for that model:
   rails g translation Model
   
 Update the migration with the column for that field:
-  t.string :prop
+  t.string :attr
   
 Update your db:
   rake db:migrate
