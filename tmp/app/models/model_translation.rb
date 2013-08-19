@@ -1,6 +1,4 @@
 class ModelTranslation < ActiveRecord::Base
-
-  
   
   belongs_to :models
   

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130819160941) do
+ActiveRecord::Schema.define(version: 20130819165249) do
 
   create_table "model_translations", force: true do |t|
     t.integer  "model_id"
