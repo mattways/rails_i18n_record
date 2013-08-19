@@ -9,27 +9,24 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended to check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130404161713) do
+ActiveRecord::Schema.define(version: 20130819160941) do
 
-  create_table "models", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "models_i18n", :force => true do |t|
-    t.integer  "model_id",   :null => false
-    t.string   "locale",     :null => false
+  create_table "model_translations", force: true do |t|
+    t.integer  "model_id"
+    t.string   "locale"
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  add_index "models_i18n", ["created_at"], :name => "index_models_i18n_on_created_at"
-  add_index "models_i18n", ["locale"], :name => "index_models_i18n_on_locale"
-  add_index "models_i18n", ["model_id"], :name => "index_models_i18n_on_model_id"
-  add_index "models_i18n", ["name"], :name => "index_models_i18n_on_name"
-  add_index "models_i18n", ["updated_at"], :name => "index_models_i18n_on_updated_at"
+  add_index "model_translations", ["locale"], name: "index_model_translations_on_locale"
+  add_index "model_translations", ["model_id"], name: "index_model_translations_on_model_id"
+
+  create_table "models", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

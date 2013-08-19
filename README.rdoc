@@ -1,13 +1,13 @@
-{<img src="https://codeclimate.com/github/mattways/rails_i18n_record.png" />}[https://codeclimate.com/github/mattways/rails_i18n_record] {<img src="https://secure.travis-ci.org/mattways/rails_i18n_record.png?branch=master" alt="Build Status" />}[https://travis-ci.org/mattways/rails_i18n_record] {<img src="https://gemnasium.com/mattways/rails_i18n_record.png" alt="Dependency Status" />}[https://gemnasium.com/mattways/rails_i18n_record]
+{<img src="https://codeclimate.com/github/mattways/translatable_records.png" />}[https://codeclimate.com/github/mattways/translatable_records] {<img src="https://secure.travis-ci.org/mattways/translatable_records.png?branch=master" alt="Build Status" />}[https://travis-ci.org/mattways/translatable_records] {<img src="https://gemnasium.com/mattways/translatable_records.png" alt="Dependency Status" />}[https://gemnasium.com/mattways/translatable_records]
 
-= Rails I18n Record
+= Translatable Records
 
-Adds models, migrations and handy methods to ActiveRecord to deal with translations.
+Everything you need to work with translatable records.
 
 = Install
 
 Put this line in your Gemfile:
-  gem 'rails_i18n_record'
+  gem 'translatable_records'
   
 Then bundle:
   $ bundle
@@ -18,7 +18,7 @@ First define the model and set the name of the fields you want to translate with
   attr_translatable :prop
 
 Generate the translation model and migration for that model:
-  rails g i18n Model
+  rails g translation Model
   
 Update the migration with the column for that field:
   t.string :prop
@@ -28,6 +28,9 @@ Update your db:
   
 (Now you can use that field of the model as usual and any change would be saved using the current I18n.locale) 
 
+If you want to build a translation for each available locale:
+  model_instance.build_translations
+
 If you want to get another translation:
   model_instance.translation_by_locale :es
 
@@ -35,10 +38,15 @@ If you want to change the locale to something different than I18n.locale:
   model_instance.with_locale :es
   
 If you want to save multiple translations:
-  - f.object.translations.each do |t|
-    = f.fields_for 'translations_attributes[]', t do |ff|
-      = field_set_tag t("languages.#{t.locale}") do
-        %ul
-          %li
-            = ff.label :prop
-            = ff.text_field :prop
+  <%= f.fields_for 'translations_attributes[]', t do |ff| %>
+    <%= field_set_tag t("languages.#{t.locale}") do %>
+      <% unless t.new_record? %>
+        <%= ff.hidden_field :id %>
+      <% end %>
+      <%= ff.hidden_field :locale %>
+      <li>
+        <%= ff.label :attr %>
+        <%= ff.text_field :attr %>
+      </li>
+    <% end %>
+  <% end %>

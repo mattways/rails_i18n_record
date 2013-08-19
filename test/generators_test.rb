@@ -1,24 +1,20 @@
 require 'test_helper'
 require 'rails/generators'
-require 'generators/i18n_generator'
+require 'generators/translation_generator'
 
 class I18nGeneratorTest < Rails::Generators::TestCase
 
-  setup :clean
+  setup do
+    FileUtils.rm_rf(self.destination_root)
+  end
   
-  tests I18nGenerator
+  tests TranslationGenerator
   destination File.expand_path('../tmp', File.dirname(__FILE__))
   
   test "should exists" do
-    run_generator %w(something)
-    assert_file 'app/models/something_translation.rb'
-    assert_migration 'db/migrate/create_somethings_i18n.rb'    
-  end
-
-  protected
-
-  def clean
-    FileUtils.rm_rf(self.destination_root)
+    run_generator %w(model)
+    assert_file 'app/models/model_translation.rb'
+    assert_migration 'db/migrate/create_model_translations.rb'    
   end
   
 end
