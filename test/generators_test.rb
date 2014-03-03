@@ -11,7 +11,7 @@ class I18nGeneratorTest < Rails::Generators::TestCase
   tests TranslationGenerator
   destination File.expand_path('../tmp', File.dirname(__FILE__))
   
-  test "should exists" do
+  test "should generate files" do
     run_generator %w(model)
     assert_file 'app/models/model_translation.rb'
     assert_migration 'db/migrate/create_model_translations.rb'    

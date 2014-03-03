@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20130819165249) do
   add_index "model_translations", ["model_id"], name: "index_model_translations_on_model_id"
 
   create_table "models", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
