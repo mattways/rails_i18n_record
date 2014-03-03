@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.authors     = ['Museways']
   s.email       = ['hello@museways.com']
   s.homepage    = 'https://github.com/museways/translatable_records'
-  s.summary     = 'Translatable Records for Rails.'
+  s.summary     = 'Translatable records for rails.'
   s.description = 'Everything you need to work with translatable records.'
   s.license     = 'MIT'
 
