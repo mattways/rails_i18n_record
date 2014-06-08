@@ -5,13 +5,13 @@ class TranslationGenerator < Rails::Generators::NamedBase
 
   source_root File.expand_path('../templates', __FILE__)
   
-  def create_model
+  def create_translation_model
     @model = Object.const_get(class_name)
-    template 'model.rb.erb', "app/models/#{file_name}_translation.rb"
+    template 'model.rb', "app/models/#{file_name}_translation.rb"
   end
   
-  def create_migration
-    migration_template 'migration.rb.erb', "db/migrate/create_#{singular_table_name}_translations.rb"
+  def create_translation_migration
+    migration_template 'migration.rb', "db/migrate/create_#{singular_table_name}_translations.rb"
   end
   
   def self.next_migration_number(path)
