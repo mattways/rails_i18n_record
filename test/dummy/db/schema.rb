@@ -9,11 +9,11 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended that you check this file into your version control system.
+# It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130819165249) do
+ActiveRecord::Schema.define(:version => 20130819165249) do
 
-  create_table "model_translations", force: true do |t|
+  create_table "model_translations", :force => true do |t|
     t.integer  "model_id"
     t.string   "locale"
     t.string   "name"
@@ -21,11 +21,10 @@ ActiveRecord::Schema.define(version: 20130819165249) do
     t.datetime "updated_at"
   end
 
-  add_index "model_translations", ["locale"], name: "index_model_translations_on_locale"
-  add_index "model_translations", ["model_id"], name: "index_model_translations_on_model_id"
+  add_index "model_translations", ["locale"], :name => "index_model_translations_on_locale"
+  add_index "model_translations", ["model_id"], :name => "index_model_translations_on_model_id"
 
-  create_table "models", force: true do |t|
-    t.string   "name"
+  create_table "models", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end

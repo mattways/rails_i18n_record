@@ -18,7 +18,7 @@ module TranslatableRecords
       end
  
       def translation_by_locale(locale)
-        translations.find { |t| t.locale == locale.to_s } || translations.find_by_locale(locale)
+        translations.to_a.find { |t| t.locale == locale.to_s } || translations.find_by_locale(locale)
       end
  
     end

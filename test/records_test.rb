@@ -8,7 +8,7 @@ class RecrodsTest < ActiveSupport::TestCase
 
   test "should edit associated translation" do
     record.name = 'new name'
-    record.save! 
+    record.save!
     assert_equal 'new name', record.name
   end
 
