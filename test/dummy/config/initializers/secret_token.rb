@@ -9,4 +9,5 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
+Dummy::Application.config.secret_token = '7df7e2131e8049bf1397fd7586bd3dfa812f69914f258ee99734a62b8cc16896147a9276e35b6349629341cf1a9b62025e277ea721be144377dbc3979e90a629'
 Dummy::Application.config.secret_key_base = '7df7e2131e8049bf1397fd7586bd3dfa812f69914f258ee99734a62b8cc16896147a9276e35b6349629341cf1a9b62025e277ea721be144377dbc3979e90a629'
