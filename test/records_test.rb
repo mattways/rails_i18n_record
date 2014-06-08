@@ -7,7 +7,8 @@ class RecrodsTest < ActiveSupport::TestCase
   end
 
   test "should edit associated translation" do
-    record.update name: 'new name'
+    record.name = 'new name'
+    record.save! 
     assert_equal 'new name', record.name
   end
 
@@ -19,7 +20,8 @@ class RecrodsTest < ActiveSupport::TestCase
   test "should change locales" do
     record.with_locale :es
     assert_nil record.name
-    record.update name: 'new name'
+    record.name = 'new name'
+    record.save!
     assert_equal 'new name', record.name
     record.with_locale :en
     assert_equal 'name', record.name

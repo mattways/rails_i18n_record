@@ -4,7 +4,7 @@ module TranslatableRecords
       extend ActiveSupport::Concern
  
       def with_locale(locale)
-        @locale = locale.to_sym
+        @current_locale = locale.to_sym
       end
  
       def build_translations
@@ -14,7 +14,7 @@ module TranslatableRecords
       protected
  
       def current_locale
-        @locale || I18n.locale
+        @current_locale || I18n.locale
       end
  
       def translation_by_locale(locale)
