@@ -21,15 +21,13 @@ First define the model and set the name of the fields you want to translate with
 
 Generate the translation model and migration for that model:
   rails g translation Model
-  
+ 
 Update the translation migration with the column for that field and remove the column from the original table:
   t.string :attr
-  
+ 
 Update your db:
   rake db:migrate
-  
-(Now you can use that field of the model as usual and any change would be saved using the current I18n.locale) 
-
+ 
 If you want to change the locale to something different than I18n.locale:
   model_instance.with_locale :es
 
