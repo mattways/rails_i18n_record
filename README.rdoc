@@ -17,7 +17,7 @@ Then bundle:
 First define the model and set the name of the fields you want to translate with the attr_translatable method:
   attr_translatable :attr
 
-(If you are using rails 3 you should use attr_accessible :attr if you want that attr directly with create, update, etc
+(If you are using rails 3 you should add attr_accessible :attr to pass the atrr to create, update, etc)
 
 Generate the translation model and migration for that model:
   rails g translation Model
