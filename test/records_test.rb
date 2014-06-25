@@ -1,23 +1,23 @@
 require 'test_helper'
 
-class RecrodsTest < ActiveSupport::TestCase
+class RecordsTest < ActiveSupport::TestCase
 
-  test "should create associated translation" do
+  test "create associated translation" do
     assert_equal 'name', record.name
   end
 
-  test "should edit associated translation" do
+  test "edit associated translation" do
     record.name = 'new name'
     record.save!
     assert_equal 'new name', record.name
   end
 
-  test "should delete associated translation" do
+  test "delete associated translation" do
     record.destroy
     assert_nil ModelTranslation.find_by_model_id(record.id)
   end
 
-  test "should change locales" do
+  test "change locales" do
     record.with_locale :es
     assert_nil record.name
     record.name = 'new name'
@@ -30,7 +30,7 @@ class RecrodsTest < ActiveSupport::TestCase
   private
 
   def record
-    @record ||= Model.create(name: 'name') 
+    @record ||= Model.create(name: 'name')
   end
 
 end

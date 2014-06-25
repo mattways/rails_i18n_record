@@ -2,13 +2,12 @@ module TranslatableRecords
   module ActiveRecord
     module Base
       extend ActiveSupport::Concern
-
       module ClassMethods
 
         def translatable?
           translatable_attrs.any?
         end
- 
+
         def translatable_attrs
           @translatable_attrs ||= []
         end
