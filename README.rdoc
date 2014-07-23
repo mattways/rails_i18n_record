@@ -24,7 +24,7 @@ Complete the migrations adding the columns for each field in the translatations 
   add_column :model_translations, :attr, :string
 
 Remove the original column from models table:
-  remove_column :model, :attr
+  remove_column :models, :attr
 
 Update your db:
   rake db:migrate
