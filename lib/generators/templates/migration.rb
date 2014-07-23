@@ -4,7 +4,7 @@ class <%= "Create#{singular_name.camelize}Translations" %> < ActiveRecord::Migra
       t.integer <%= ":#{singular_table_name}_id" %>
       t.string :locale
 
-      t.timestamps 
+      t.timestamps
     end
     add_index <%= ":#{singular_table_name}_translations" %>, <%= ":#{singular_table_name}_id" %>
     add_index <%= ":#{singular_table_name}_translations" %>, :locale
