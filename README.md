@@ -43,7 +43,7 @@ Update your db:
 rake db:migrate
 ```
 
-NOTE: If you are using rails 3 you should add attr_accessible :attr to pass the atrr to create, update, etc.
+NOTE: In rails 3 you should add attr_accessible :attr to pass the atrr to create, update, etc.
 
 ## Usage
 
