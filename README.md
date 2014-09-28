@@ -1,4 +1,4 @@
-[![Gem Version](https://badge.fury.io/rb/translatable_records.svg)](http://badge.fury.io/rb/translatable_records) [![Code Climate](https://codeclimate.com/github/museways/translatable_records/badges/gpa.svg)](https://codeclimate.com/github/museways/translatable_records) [![Build Status](https://travis-ci.org/museways/translatable_records.svg?branch=master)](https://travis-ci.org/museways/translatable_records)
+[![Gem Version](https://badge.fury.io/rb/translatable_records.svg)](http://badge.fury.io/rb/translatable_records) [![Code Climate](https://codeclimate.com/github/museways/translatable_records/badges/gpa.svg)](https://codeclimate.com/github/museways/translatable_records) [![Build Status](https://travis-ci.org/museways/translatable_records.svg?branch=master)](https://travis-ci.org/museways/translatable_records) [![Dependency Status](https://gemnasium.com/museways/translatable_records.svg)](https://gemnasium.com/museways/translatable_records)
 
 # Translatable Records
 
