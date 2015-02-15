@@ -25,7 +25,6 @@ module TranslatableRecords
         def make_translatable
           include TranslatableRecords::ActiveRecord::Translatable
           default_scope -> { includes(:translations) }
-          attr_accessible :translations_attributes if Rails::VERSION::MAJOR < 4
           has_many :translations, class_name: "#{name}Translation", autosave: true, dependent: :destroy
           accepts_nested_attributes_for :translations
         end

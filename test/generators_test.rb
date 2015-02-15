@@ -3,13 +3,12 @@ require 'rails/generators'
 require 'generators/translation_generator'
 
 class GeneratorsTest < Rails::Generators::TestCase
+  tests TranslationGenerator
+  destination File.expand_path('../tmp', File.dirname(__FILE__))
 
   teardown do
     FileUtils.rm_rf self.destination_root
   end
-
-  tests TranslationGenerator
-  destination File.expand_path('../tmp', File.dirname(__FILE__))
 
   test 'files generation' do
     run_generator %w(model)

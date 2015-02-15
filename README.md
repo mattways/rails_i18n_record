@@ -43,8 +43,6 @@ Update your db:
 rake db:migrate
 ```
 
-NOTE: In rails 3 you should add attr_accessible :attr to pass the atrr to create, update, etc.
-
 ## Usage
 
 If you want to change the locale to something different than I18n.locale:
