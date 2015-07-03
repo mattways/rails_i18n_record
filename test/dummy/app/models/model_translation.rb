@@ -2,7 +2,7 @@ class ModelTranslation < ActiveRecord::Base
 
   belongs_to :models
 
-  validates :locale, presence: true
-  validates :model_id, uniqueness: { scope: :locale }
+  validates_presence_of :locale
+  validates_uniqueness_of :model_id, scope: :locale
 
 end
