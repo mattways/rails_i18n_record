@@ -7,9 +7,9 @@ require 'translatable_records/version'
 Gem::Specification.new do |s|
   s.name        = 'translatable_records'
   s.version     = TranslatableRecords::VERSION
-  s.authors     = ['Museways']
-  s.email       = ['hello@museways.com']
-  s.homepage    = 'https://github.com/museways/translatable_records'
+  s.authors     = ['mmontossi']
+  s.email       = ['mmontossi@buyin.io']
+  s.homepage    = 'https://github.com/mmontossi/translatable_records'
   s.summary     = 'Translatable records for rails.'
   s.description = 'Minimalistic toolkit to work with translatable records in rails.'
   s.license     = 'MIT'

@@ -1,4 +1,7 @@
-[![Gem Version](https://badge.fury.io/rb/translatable_records.svg)](http://badge.fury.io/rb/translatable_records) [![Code Climate](https://codeclimate.com/github/museways/translatable_records/badges/gpa.svg)](https://codeclimate.com/github/museways/translatable_records) [![Build Status](https://travis-ci.org/museways/translatable_records.svg?branch=master)](https://travis-ci.org/museways/translatable_records) [![Dependency Status](https://gemnasium.com/museways/translatable_records.svg)](https://gemnasium.com/museways/translatable_records)
+[![Gem Version](https://badge.fury.io/rb/translatable_records.svg)](http://badge.fury.io/rb/translatable_records)
+[![Code Climate](https://codeclimate.com/github/mmontossi/translatable_records/badges/gpa.svg)](https://codeclimate.com/github/mmontossi/translatable_records)
+[![Build Status](https://travis-ci.org/mmontossi/translatable_records.svg)](https://travis-ci.org/mmontossi/translatable_records)
+[![Dependency Status](https://gemnasium.com/mmontossi/translatable_records.svg)](https://gemnasium.com/mmontossi/translatable_records)
 
 # Translatable Records
 
@@ -66,7 +69,7 @@ If you want to save multiple translations:
 
 ## Credits
 
-This gem is maintained and funded by [museways](http://museways.com).
+This gem is maintained and funded by [mmontossi](https://github.com/mmontossi).
 
 ## License
 
