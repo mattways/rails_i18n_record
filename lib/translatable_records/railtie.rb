@@ -1,7 +1,7 @@
 module TranslatableRecords
   class Railtie < Rails::Railtie
 
-    initializer :translatable_records do
+    initializer 'translatable_records.extensions' do
       ::ActiveRecord::Base.include(
         TranslatableRecords::Extensions::ActiveRecord::Base
       )
