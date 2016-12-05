@@ -5,7 +5,15 @@
 
 # Translatable Records
 
-Minimalistic toolkit to work with translatable records in rails.
+Fully customizable record translations for rails.
+
+## Why
+
+I did this gem to:
+
+- Have the freedom to customize the translation model.
+- Avoid duplication by delegate translatable attributes directly to translation model.
+- Use translations other than I18n.available_locales.
 
 ## Install
 
@@ -28,7 +36,7 @@ attr_translatable :attr
 
 Generate the translation model and migration for them:
 ```
-rails g translation model
+$ bundle exec rails g translation model
 ```
 
 Complete the migrations adding the columns for each field in the translatations tables:
@@ -43,7 +51,7 @@ remove_column :models, :attr
 
 Update your db:
 ```
-rake db:migrate
+$ bundle exec rake db:migrate
 ```
 
 ## Usage

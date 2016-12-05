@@ -9,24 +9,26 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended to check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130819165249) do
+ActiveRecord::Schema.define(version: 20161205171056) do
 
-  create_table "model_translations", :force => true do |t|
-    t.integer  "model_id"
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "product_translations", force: :cascade do |t|
+    t.integer  "product_id"
     t.string   "locale"
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index "model_translations", ["locale"], :name => "index_model_translations_on_locale"
-  add_index "model_translations", ["model_id"], :name => "index_model_translations_on_model_id"
+  add_index "product_translations", ["product_id", "locale"], name: "index_product_translations_on_product_id_and_locale", unique: true, using: :btree
 
-  create_table "models", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "products", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
