@@ -29,24 +29,16 @@ $ bundle
 
 ## Configuration
 
-Define wich attributes will be translatable with the attr_translatable in your models:
+Define wich attributes will be translated in the model:
 ```ruby
-attr_translatable :attr
+class Product < ActiveRecord::Base
+  translate :name
+end
 ```
 
-Generate the translation model and migration for them:
+Generate the translation and migration:
 ```
-$ bundle exec rails g translation model
-```
-
-Complete the migrations adding the columns for each field in the translatations tables:
-```ruby
-add_column :model_translations, :attr, :string
-```
-
-Remove the original column from models table:
-```ruby
-remove_column :models, :attr
+$ bundle exec rails g translation product
 ```
 
 Update your db:
@@ -56,22 +48,26 @@ $ bundle exec rake db:migrate
 
 ## Usage
 
-If you want to change the locale to something different than I18n.locale:
+### Accessors
+
+By default will use I18n.locale but you can change it:
 ```ruby
-record.with_locale :es
+product.locale = :en
 ```
 
-If you want to build a translation for each available locale:
+Accessor continue working the same:
 ```ruby
-record.build_translations
+product.name = 'Phone'
 ```
+
+### Views
 
 If you want to save multiple translations:
 ```erb
 <%= f.fields_for :translations do |ff| %>
   <%= ff.hidden_field :locale %>
-  <%= ff.label :attr %>
-  <%= ff.text_field :attr %>
+  <%= ff.label :name %>
+  <%= ff.text_field :name %>
 <% end %>
 ```
 

@@ -10,6 +10,7 @@ class TranslationGenerator < Rails::Generators::NamedBase
   end
 
   def create_migration_file
+    @attributes = class_name.constantize.translations
     migration_template 'migration.rb', "db/migrate/create_#{singular_table_name}_translations.rb"
   end
 

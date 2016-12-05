@@ -14,8 +14,8 @@ module TranslatableRecords
       attributes.each do |attribute|
         define_writer attribute
         define_readers attribute
+        model.translations << attribute
       end
-      model.translations ||= attributes
       model.include concern
     end
 

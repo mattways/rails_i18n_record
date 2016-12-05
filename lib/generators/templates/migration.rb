@@ -3,6 +3,9 @@ class Create<%= class_name %>Translations < ActiveRecord::Migration
     create_table :<%= singular_table_name %>_translations do |t|
       t.integer :<%= singular_table_name %>_id
       t.string :locale
+      <%- @attributes.each do |attribute| -%>
+      t.string :<%= attribute %>
+      <%- end -%>
 
       t.timestamps null: false
     end
