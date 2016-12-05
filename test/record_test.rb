@@ -29,6 +29,10 @@ class ProductTest < ActiveSupport::TestCase
     product.locale = :es
     assert_equal 'teléfono', product.name
     assert_equal 'es', product.locale
+
+    product.destroy!
+
+    assert_equal 0, ProductTranslation.count
   end
 
 end
