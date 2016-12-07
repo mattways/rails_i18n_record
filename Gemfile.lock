@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    translatable_records (1.2.0)
+    translatable_records (4.0.0.0)
       rails (>= 4.2.0, < 4.3.0)
 
 GEM
