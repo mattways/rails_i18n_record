@@ -1,7 +1,10 @@
-development:
+default: &default
   adapter: postgresql
+
+development:
+  <<: *default
   database: translatable_records_development
 
 test:
-  adapter: postgresql
+  <<: *default
   database: translatable_records_test

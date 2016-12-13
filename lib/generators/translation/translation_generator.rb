@@ -2,7 +2,7 @@ require 'rails/generators'
 
 module TranslatableRecords
   module Generators
-    class TranslationGenerator < ::Rails::Generators::NamedBase
+    class TranslationGenerator < Rails::Generators::NamedBase
       include Rails::Generators::Migration
 
       source_root File.expand_path('../templates', __FILE__)

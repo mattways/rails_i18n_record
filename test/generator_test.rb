@@ -10,7 +10,7 @@ class GeneratorsTest < ::Rails::Generators::TestCase
   end
 
   test 'install' do
-    self.class.tests TranslationGenerator
+    self.class.tests TranslatableRecords::Generators::TranslationGenerator
     run_generator %w(product)
     assert_file 'app/models/product_translation.rb'
     assert_migration 'db/migrate/create_product_translations.rb'

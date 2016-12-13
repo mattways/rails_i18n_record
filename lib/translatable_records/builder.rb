@@ -5,11 +5,13 @@ module TranslatableRecords
 
     def initialize(model)
       @model = model
-      @concern = Module.new
+      @concern = Module.new do
+        extend ActiveSupport::Concern
+        include Concern
+      end
     end
 
     def define(attributes)
-      model.include Concern
       ensure_association
       attributes.each do |attribute|
         define_writer attribute
