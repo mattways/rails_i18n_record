@@ -1,4 +1,4 @@
-class ProductTranslation < ActiveRecord::Base
+class ProductTranslation < ApplicationRecord
 
   belongs_to :product
 
