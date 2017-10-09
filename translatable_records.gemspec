@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.name        = 'translatable_records'
   s.version     = TranslatableRecords::VERSION
   s.authors     = ['mmontossi']
-  s.email       = ['mmontossi@museways.com']
-  s.homepage    = 'https://github.com/mmontossi/translatable_records'
+  s.email       = ['hi@museways.com']
+  s.homepage    = 'https://github.com/museways/translatable_records'
   s.summary     = 'Record translations for rails.'
   s.description = 'Fully customizable record translations for rails.'
   s.license     = 'MIT'
